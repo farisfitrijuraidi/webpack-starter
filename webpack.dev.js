@@ -3,9 +3,17 @@ const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
   mode: "development",
-  devtool: "inline-source-map", // Helps you find errors in the original file
+  devtool: "inline-source-map", 
   devServer: {
     static: "./dist",
-    watchFiles: ["./src/template.html"], // Hot reload HTML changes
+    watchFiles: ["./src/template.html"], 
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
 });

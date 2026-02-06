@@ -1,12 +1,22 @@
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = merge(common, {
   mode: "production",
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
+  },
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
-    clean: true, // Clean the output directory before emit
+    clean: true,
   },
 });
