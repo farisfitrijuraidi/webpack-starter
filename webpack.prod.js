@@ -5,6 +5,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export default merge(common, {
   mode: "production",
+  devtool: "source-map",
   plugins: [new MiniCssExtractPlugin()],
   module: {
     rules: [
@@ -16,7 +17,7 @@ export default merge(common, {
   },
   output: {
     filename: "main.js",
-    path: path.resolve(import.meta.dirname, "dist"), 
+    path: path.resolve(import.meta.dirname, "dist"),
     clean: true,
   },
 });
