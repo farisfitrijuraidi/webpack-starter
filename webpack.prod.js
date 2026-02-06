@@ -1,9 +1,9 @@
-const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+import { merge } from "webpack-merge";
+import common from "./webpack.common.js";
+import path from "path";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-module.exports = merge(common, {
+export default merge(common, {
   mode: "production",
   plugins: [new MiniCssExtractPlugin()],
   module: {
@@ -16,7 +16,7 @@ module.exports = merge(common, {
   },
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(import.meta.dirname, "dist"), 
     clean: true,
   },
 });
